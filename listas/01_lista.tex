@@ -45,10 +45,10 @@
 \setcounter{Question}{7}
 
 \begin{question}
-	Assume the hazard function of system is $\lambda (t) = t/250000$.
+	Assume the hazard function of a system is $\lambda (t) = t/250000$. Calculate
 	\begin{enumerate}[(a)]
-		\item Calculate the Reliability of the system at $t = 720 \unit{\hour}$
-		\item Calculate the MTTF
+		\item the Reliability of the system at $t = 720 \unit{\hour}$
+		\item the MTTF
 	\end{enumerate}
 \end{question}
 
@@ -86,11 +86,48 @@
         MTTF &= \int_0^\infty e^{-t^2/({\num{5e5})}} \odif{t} \\
         &\approx 626.657
     \end{empheq}
-    
-    
-
 \end{enumerate}
 
+%----------------------------------------------------------------------------------------
+%	PROBLEM 9
+%----------------------------------------------------------------------------------------
+
+\begin{question}
+	If the cumulative rate function of system is $\num{7.5e-7}\times t^3$, compute
+	\begin{enumerate}[(a)]
+		\item the reliability at $t = 720 \unit{\hour}$
+		\item the failure rate at $t = 500 \unit{\hour}$
+		\item the MTTF
+	\end{enumerate}
+
+    \begin{enumerate}[(a)]
+        \item 
+    \end{enumerate}
+
+\end{question}
+
+%----------------------------------------------------------------------------------------
+%	PROBLEM 10
+%----------------------------------------------------------------------------------------
+
+\begin{question}
+    Let us assume the failure and the repair rates are equal to $\lambda = \num{1.2e-6}$ and $\mu = \num{1.2e-3}$, respectively.
+	\begin{enumerate}[(a)]
+		\item Calculate the MTTF and MTBF
+		\item Calculate the reliability at $t = 8760 \unit{\hour}$
+		\item If the annual downtime is $15\unit{\hour}$, what is the steady-state availability?
+		\item What is the effect on the availability if we triple the MTTR?
+	\end{enumerate}
+
+\end{question}
+
+\begin{enumerate}[(a)]
+    \item We can define MTTF and MTBF as
+    \begin{align*}
+        MTTF &= \frac{1}{\lambda} \\
+        MTBF &= \frac{1}{\lambda - \mu}
+    \end{align*}
+\end{enumerate}
 
 %----------------------------------------------------------------------------------------
 
