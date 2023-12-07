@@ -1,0 +1,97 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Lachaise Assignment
+% LaTeX Template
+% Version 1.0 (26/6/2018)
+%
+% This template originates from:
+% http://www.LaTeXTemplates.com
+%
+% Authors:
+% Marion Lachaise & François Févotte
+% Vel (vel@LaTeXTemplates.com)
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass{article}
+
+\input{structure.tex} % Include the file specifying the document structure and custom commands
+
+%----------------------------------------------------------------------------------------
+%	ASSIGNMENT INFORMATION
+%----------------------------------------------------------------------------------------
+
+\title{Critical Systems Evaluation} % Title of the assignment
+
+\author{First Homework List\\ \texttt{acn2}} % Author name and email address
+
+\date{CIN, UFPE --- \today} % University, school and/or department name(s) and a date
+
+%----------------------------------------------------------------------------------------
+
+\begin{document}
+
+\maketitle % Print the title
+
+%----------------------------------------------------------------------------------------
+%	PROBLEM 8
+%----------------------------------------------------------------------------------------
+\setcounter{Question}{7}
+
+\begin{question}
+	Assume the hazard function of system is $\lambda (t) = t/250000$.
+	\begin{enumerate}[(a)]
+		\item Calculate the Reliability of the system at $t = 720 \unit{\hour}$
+		\item Calculate the MTTF
+	\end{enumerate}
+\end{question}
+
+\begin{enumerate}[(a)]
+    \item The Reliability of a system can be described by the following equation:
+    \begin{equation}
+        R(t) = e^{-\int_0^t \lambda (t) \odif{t}}
+    \end{equation}
+    We know that $\lambda (t) = t/(\num{2.5e5})$, thus
+    \begin{align*}
+        \int_0^t \lambda (t) \odif{t} &= \int_0^t \frac{t}{\num{2.5e5}} \odif{t} \\
+        &= \frac{1}{\num{2.5e5}} \int_0^t t \odif{t} \\
+        &= \frac{1}{\num{2.5e5}} \cdot \frac{t^2}{2} \\
+        &= \frac{t^2}{\num{5e5}}
+    \end{align*}
+    Therefore,
+    \begin{align}
+        R(t) = e^{-t^2/({\num{5e5})}} \label{eq:q8_reliability}
+    \end{align}
+    Assuming $t = 720$,
+    \begin{align*}
+        \frac{t^2}{\num{5e5}} &=\frac{720^2}{\num{5e5}} = \frac{648}{625}
+    \end{align*}
+    Thus, we have that
+    \begin{empheq}[box=\fbox]{align*}
+        R(t=720) &= e^{-648/625} \\
+        &\approx \num{0.354}
+    \end{empheq}    
+    \item The MTTF can be expressed as a function of the Reliability:
+    \begin{align}
+        MTTF = \int_0^\infty R(t) \odif{t}
+    \end{align}
+    We'll use the value of $R(t)$ we found on \eqref{eq:q8_reliability}. As this integral is too complex to calculate by hand, we used the Wolfram Alpha tool to compute the result.
+    \begin{empheq}[box=\fbox]{align*}
+        MTTF &= \int_0^\infty e^{-t^2/({\num{5e5})}} \odif{t} \\
+        &\approx 626.657
+    \end{empheq}
+    
+    
+
+\end{enumerate}
+
+
+%----------------------------------------------------------------------------------------
+
+\end{document}
