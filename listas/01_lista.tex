@@ -79,7 +79,7 @@
     \end{empheq}    
     \item The MTTF can be expressed as a function of the Reliability:
     \begin{align}
-        MTTF = \int_0^\infty R(t) \odif{t}
+        MTTF = \int_0^\infty R(t) \odif{t} \label{eq:MTTF}
     \end{align}
     We'll use the value of $R(t)$ we found on \eqref{eq:q8_reliability}. As this integral is too complex to calculate by hand, we used the Wolfram Alpha tool to compute the result.
     \begin{empheq}[box=\fbox]{align*}
@@ -129,6 +129,12 @@
     \begin{empheq}[box=\fbox]{align*}
         h(t) &= \num{2.25e-6} \times 500^2 \\
         &= \num{0.5625}
+    \end{empheq}
+
+    \item We'll use formulas \eqref{eq:MTTF} and \eqref{eq:q9_rtht} to compute the MTTF. Once again, we use the Wolfram Alpha tool to compute the result, as this integral is too complex to evaluate by hand
+    \begin{empheq}[box=\fbox]{align*}
+        MTTF &= \int_0^\infty e^{-\num{7.5e-7} \times t^3} \odif{t} \\
+        &\approx \num{98.2851}
     \end{empheq}
 \end{enumerate}
 
