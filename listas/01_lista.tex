@@ -123,10 +123,10 @@
 
 \begin{enumerate}[(a)]
     \item As the failure and repair rates are constant, we can define MTTF and MTTR as
-    \begin{align*}
+    \begin{align}
         MTTF &= \frac{1}{\lambda} & 
-        MTTR &= \frac{1}{\mu}
-    \end{align*}
+        MTTR &= \frac{1}{\mu} \label{eq:q10_mttf}
+    \end{align}
     Furthermore, assuming that $\text{MNRT} \simeq 0$,
     \begin{align*}
         MTBF = MTTF + MTTR = \frac{1}{\lambda} + \frac{1}{\mu} 
@@ -161,6 +161,30 @@
     \begin{empheq}[box=\fbox]{align*}
         A \approx \num{0.9982}
     \end{empheq} 
+    \item We first calculate the original system's availability $A$, given by the formula
+    \begin{equation}
+        A = \frac{MTTF}{MTTF + MTTR} = \frac{\mu}{\lambda + \mu} \label{eq:q10avail}
+    \end{equation}
+    From the equations in \eqref{eq:q10_mttf}, and the $MTTF$ we found on item (a), we know that
+    \begin{align*}
+        MTTF &= \frac{1}{\num{1.2e-6}} & MTTR &= \frac{1}{\num{1.2e-3}}
+    \end{align*}
+    The original system's availability $A_1$ can then be calculated using \eqref{eq:q10avail}
+    \begin{align*}
+        A_1 &= \frac{\frac{1}{\num{1.2e-6}}}{\frac{1}{\num{1.2e-6}} + \frac{1}{\num{1.2e-3}}} \\
+        &\approx 0.9990
+    \end{align*}
+    We now triple the MTTR and calculate the new system's availability $A_2$
+    \begin{align*}
+        A_2 &= \frac{\frac{1}{\num{1.2e-6}}}{\frac{1}{\num{1.2e-6}} + \frac{3}{\num{1.2e-3}}} \\
+        &\approx 0.9970
+    \end{align*}
+    We can then calculate the impact of the new MTTR on the original availability $A_1$ in relative terms
+    \begin{empheq}[box=\fbox]{align*}
+    1 - \frac{A_2}{A_1} = \num{0.002} = 0.2\%
+    \end{empheq}
+    Therefore, tripling the MTTR brought down the availability $A_1$ of the system by 0.2\%
+
 \end{enumerate}
 
 %----------------------------------------------------------------------------------------
