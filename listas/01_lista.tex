@@ -53,7 +53,7 @@
 \end{question}
 
 \begin{enumerate}[(a)]
-    \item The Reliability of a system can be described by the following equation:
+    \item The reliability of a system can be described by the following equation:
     \begin{equation}
         R(t) = e^{-\int_0^t \lambda (t) \odif{t}}
     \end{equation}
@@ -99,12 +99,38 @@
 		\item the failure rate at $t = 500 \unit{\hour}$
 		\item the MTTF
 	\end{enumerate}
-
-    \begin{enumerate}[(a)]
-        \item 
-    \end{enumerate}
-
 \end{question}
+
+\begin{enumerate}[(a)]
+    \item The reliability can be expressed as a function of the cumulative hazard rate $H(t)$
+    \begin{align}
+        H(t) &= \int_0^t \lambda(t) \odif{t} \notag\\
+        R(t) &= e^{-\int_0^t \lambda(t) \odif{t}} \notag\\
+        \therefore \notag\\
+        R(t) &= e^{-H(t)} \label{eq:q9_rtht}
+    \end{align}
+    At $t=\qty{720}{h}$, we have
+    \begin{align*}
+        H(t) &= \num{7.5e-7} \times 720^3 \\
+        &\approx 279.936
+    \end{align*}
+    We can then find the reliability at $t=\qty{720}{h}$ using \eqref{eq:q9_rtht}
+    \begin{empheq}[box=\fbox]{align*}
+        R(t) &= e^{-279.936} \\
+        &\approx \num{2.662e-122}
+    \end{empheq}
+
+    \item By deriving the cumulative hazard rate, we can find the formula for the failure rate
+    \begin{align*}
+        h(t) &= \odv{}{t} (\num{7.5e-7} \times t^3) \\
+        &= \num{2.25e-6} \times t^2
+    \end{align*}
+    At $t=\qty{500}{h}$ we have
+    \begin{empheq}[box=\fbox]{align*}
+        h(t) &= \num{2.25e-6} \times 500^2 \\
+        &= \num{0.5625}
+    \end{empheq}
+\end{enumerate}
 
 %----------------------------------------------------------------------------------------
 %	PROBLEM 10
