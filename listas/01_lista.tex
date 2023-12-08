@@ -84,7 +84,7 @@
     We'll use the value of $R(t)$ we found on \eqref{eq:q8_reliability}. As this integral is too complex to calculate by hand, we used the Wolfram Alpha tool to compute the result.
     \begin{empheq}[box=\fbox]{align*}
         MTTF &= \int_0^\infty e^{-t^2/({\num{5e5})}} \odif{t} \\
-        &\approx 626.657
+        &\approx 626.657 \text{ hours}
     \end{empheq}
 \end{enumerate}
 
@@ -134,9 +134,33 @@
     Therefore, using the values provided for $\lambda$ and $\mu$,
     \begin{empheq}[box=\fbox]{align*}
         MTTF &= \frac{1}{\num{1.2e-6}} \\
-        MTBF &= \frac{1}{\num{1.2e-6}} + \frac{1}{\num{1.2e-3}} = 
+        &\approx \qty{833333.33}{hours} \\
+        MTBF &= \frac{1}{\num{1.2e-6}} + \frac{1}{\num{1.2e-3}} \\
+        &\approx \qty{834166.67}{hours}
     \end{empheq} 
-
+    \item As the failure rate is constant, we can define the Reliability $R$ as $$R(t) = e^{-\lambda t}$$
+    Therefore, using the values provided for $\lambda$ and $t$,
+    \begin{empheq}[box=\fbox]{align*}
+        R(t) &= e^{\num{1.2e-6} \times 8760} \\
+        &\approx \num{0.9895}
+    \end{empheq}
+    \item The system downtime ($DT$) can be expressed as 
+    \begin{equation}
+        DT = (1-A) \times T \label{eq:q10_dt}
+    \end{equation}
+    Where $T$ is the time period, and $A$ is the steady-state availability. We know $DT = \qty{15}{h}$ refers to the annual downtime, so assuming a year of 365 days
+    $$T = 365 \times 24 = \qty{8760}{hours}$$
+    Plugging the known variables into equation \eqref{eq:q10_dt}
+    \begin{align*}
+        15 &= (1-A) \times 8760 \\
+        \frac{15}{8760} &= 1-A \\
+        A &= 1 - \frac{15}{8760} \\
+        &\approx \num{0.9982}
+    \end{align*}
+    Therefore, the steady-state availability $A$ for a system with 15 hours of downtime is
+    \begin{empheq}[box=\fbox]{align*}
+        A \approx \num{0.9982}
+    \end{empheq} 
 \end{enumerate}
 
 %----------------------------------------------------------------------------------------
