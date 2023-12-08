@@ -47,7 +47,7 @@
 \begin{question}
 	Assume the hazard function of a system is $\lambda (t) = t/250000$. Calculate
 	\begin{enumerate}[(a)]
-		\item the Reliability of the system at $t = 720 \unit{\hour}$
+		\item the reliability of the system at $t = 720 \unit{\hour}$
 		\item the MTTF
 	\end{enumerate}
 \end{question}
@@ -77,7 +77,7 @@
         R(t=720) &= e^{-648/625} \\
         &\approx \num{0.354}
     \end{empheq}    
-    \item The MTTF can be expressed as a function of the Reliability:
+    \item The MTTF can be expressed as a function of the reliability:
     \begin{align}
         MTTF = \int_0^\infty R(t) \odif{t} \label{eq:MTTF}
     \end{align}
@@ -114,7 +114,7 @@
         H(t) &= \num{7.5e-7} \times 720^3 \\
         &\approx 279.936
     \end{align*}
-    We can then find the reliability at $t=\qty{720}{h}$ using \eqref{eq:q9_rtht}
+    We can then find the reliability at $t=\qty{720}{h}$ using equation \eqref{eq:q9_rtht}
     \begin{empheq}[box=\fbox]{align*}
         R(t) &= e^{-279.936} \\
         &\approx \num{2.662e-122}
@@ -138,6 +138,7 @@
     \end{empheq}
 \end{enumerate}
 
+\pagebreak
 %----------------------------------------------------------------------------------------
 %	PROBLEM 10
 %----------------------------------------------------------------------------------------
@@ -170,7 +171,7 @@
         MTBF &= \frac{1}{\num{1.2e-6}} + \frac{1}{\num{1.2e-3}} \\
         &\approx \qty{834166.67}{hours}
     \end{empheq} 
-    \item As the failure rate is constant, we can define the Reliability $R$ as $$R(t) = e^{-\lambda t}$$
+    \item As the failure rate is constant, we can define the reliability $R$ as $$R(t) = e^{-\lambda t}$$
     Therefore, using the values provided for $\lambda$ and $t$,
     \begin{empheq}[box=\fbox]{align*}
         R(t) &= e^{\num{1.2e-6} \times 8760} \\
