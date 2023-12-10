@@ -39,6 +39,165 @@
 
 \maketitle % Print the title
 
+\begin{question}
+    Explain the concepts of 
+    \begin{enumerate}[{(a)}]
+        \item fault, error, and failure
+        \item reliability, steady-state availability and instantaneous availability
+        \item  hazard and cumulative hazard functions
+    \end{enumerate}
+    \end{question}
+\setcounter{Question}{1}
+
+\begin{enumerate}[{(a)}]
+    \item \textbf{fault} is the adjudged or hypothesized cause of an error, \textbf{error} is a state of a component of a system (a system substate) that may cause a subsequent failure and a \textbf{failure} is what occurs when an error reaches the system interface and alters the service.
+    \item \textbf{reliability} is the probability that the system S does not fail up to time t, \textbf{steady-state availability} is something that is possible to quantify when system approaches stationary states, the formula for it is $A=\lim_{t \to \infty} A(t), t\ge0$ and \textbf{instantaneous availability} is the probability that the system is operational at time t.
+    \item \textbf{hazard function} is the probability of the system S failing during the interval $[t,t+\delta t]$ if it has survived to the time t and \textbf{cumulative hazard function} is the total hazard until the given point in time.
+\end{enumerate}
+    
+\begin{question}
+Consider a database system with time to failure distribution represented
+by the $CDF$ $F(t)=1+e^{-0.0005t}-2e^{-0.00025t}$.  
+    \begin{enumerate}[{(a)}]
+        \item Calculate the reliability at $t=5,500h$ 
+        \item and compute the $MTTF$,
+        \item obtain the system hazard function $\lambda(t)$  After, calculate $\lambda(t)$ at $t=5,500h$
+    \end{enumerate}
+\end{question}
+
+\begin{enumerate}[{(a)}]
+    \item The reliability of a system can be described by the following equation:
+    \begin{equation}
+        R(t) = 1 - F(t)
+    \end{equation}
+    We know that $F(t)=1+e^{-0.0005t}-2e^{-0.00025t}$, thus
+    \begin{align*}
+         R(t)&=1-(1+e^{-0.0005t}-2e^{-0.00025t}) \\
+         &=1-1-e^{-0.0005t}+2e^{-0.00025t}  \\
+        &=-e^{-0.0005t}+2e^{-0.00025t} \\
+        &=2e^{-0.00025t}-e^{-0.0005t}
+    \end{align*}
+    For $t=5,500h$  we have
+   \begin{empheq}[box=\fbox]{align*}
+        R(t=5500)=2e^{-0.00025\cdot5500}-e^{-0.0005\cdot5500} \approx 0,442
+    \end{empheq}
+    
+    \item The Mean Time to Failure ($MTTF$) can be described by the following equation
+    \begin{equation}
+        \int_{0}^{\infty} R(t) dt
+    \end{equation}
+    We know that $R(t)=2e^{-0.00025t}-e^{-0.0005t}$, thus
+    \begin{empheq}[box=\fbox]{align*}
+        \int_{0}^{\infty} R(t) dt &= \int_{0}^{\infty}2e^{-0.00025t}-e^{-0.0005t}dt \\
+        &= \int_{0}^{\infty}2e^{-0.00025t}dt - \int_{0}^{\infty}e^{-0.0005t}dt \\
+        &= 8000 - 4000 \\
+        &= 4000h
+    \end{empheq}
+
+    \item We know that $\lambda(t)$ can be described as
+    \begin{equation}
+        \lambda(t) = -frac{dR(t)}{dt} \cdot \frac{1}{R(t)}
+    \end{equation}
+    and we know that $R(t)=2e^{-0.00025t}-e^{-0.0005t}$, thus
+    \begin{align*}
+        \lambda(t) &= -\frac{dR(t)}{dt} \cdot \frac{1}{R(t)} \\
+        &=- \frac{\frac{d}{dt}(2e^{-0.00025t}-e^{-0.0005t})}{{2e^{-0.00025t}-e^{-0.0005t}}}\\
+    \end{align*}
+    so
+    \begin{empheq}[box=\fbox]{align*}
+        \lambda(t)=-\frac{0.0005e^{-0.0005t}-0.0005e^{-0.00025t}}{2e^{-0.00025t}-e^{-0.0005t}}
+    \end{empheq}
+    Substituting $t=5500$ on the obtained system hazard funciton we have
+    \begin{empheq}[box=\fbox]{align*}
+        \lambda(t=5500) &= -\frac{0.0005e^{-0.0005\cdot5500}-0.0005e^{-0.00025\cdot5500}}{2e^{-0.00025\cdot5500}-e^{-0.0005\cdot5500}} \\
+        &= 0.0002138 \\
+        &= 2.138 \cdot 10^{-4}/h
+    \end{empheq}
+\end{enumerate}
+
+\setcounter{Question}{2}
+\begin{question}
+Assume the system reliability in $t = 720h$ is $7,500 DPM$. Calculate the probability of failure by $t=720 h$
+\end{question}
+The reliability of a system can be described by the following equation
+    \begin{equation}
+        R(t) = 1 - DPM\cdot10^{-6}
+    \end{equation}
+And the probability of failure of a system can be described as
+    \begin{equation}
+        F(t) = 1 - R(t)
+    \end{equation}
+And the equation to convert $R(t)$ to $DPM$ is
+    \begin{equation}
+        R(t) = 1 - DPM\cdot10^{-6}
+    \end{equation}
+For $t=720h$ and DPM = $7500DPM$ we have
+    \begin{empheq}[box=\fbox]{align*}
+        F(t=720)&=1-(1-R(t=720)) \\
+        &= 1 - 1+(7500\cdot10^{-6})\\
+        &= 7.5\cdot10^{-3}
+    \end{empheq}
+
+\setcounter{Question}{3}
+\begin{question}
+    Assume the reliability of a system that is represented by
+    \[
+    R(t) =
+    \begin{cases}
+        \frac{1-0.0004t}{0.96} & \text{if } 100 \leq t \leq 2500 \\
+        0 & \text{if } t > 2500
+    \end{cases}
+    \]
+    Obtain the density function of the time to failure and calculate the $MTTF$ and $MedTTF$.
+\end{question}
+The probability of failure of a system cam be described by the following equation
+    \begin{equation}
+        F(t)=1-R(t)
+    \end{equation}
+Therefore,
+    \[
+    F(t) =
+    \begin{cases}
+        1 - \frac{1-0.0004t}{0.96} & \text{if } 100 \leq t \leq 2500 \\
+        1 & \text{if } t > 2500
+    \end{cases}
+    \]
+The density function of the time to failure can be described by the following equation
+    \begin{equation}
+        f(t)=\frac{d}{dt}F(t)
+    \end{equation}
+Thus,
+    \[
+    f(t) =
+    \begin{cases}
+        0.0004 & \text{if } 100 \leq t \leq 2500 \\
+        0 & \text{if } t > 2500
+    \end{cases}
+    \]
+The mean time to fail ($MTTF$) can be described as
+    \begin{equation}
+        MTTF=\int_{0}^{\infty}tf(t)dt
+    \end{equation}   
+Therefore,
+    \begin{empheq}[box=\fbox]{align*}
+        MTTF&=\int_{100}^{2500}0.004t dt+ \int_{2500}^{\infty} 0\cdot t dt\\
+        &=12500+0 \\
+        &=12500h
+    \end{empheq}
+The median time to failure ( $MedTTF$ ) is  defined by the time instant, t, when $R(t)=0.5$, therefore
+    \begin{align*}
+        &R(t)=0.5=\frac{1=0.0004t}{0.96} \\
+        & 1-0.004t = 0.96\cdot0.50 = 0.48 \\
+        & -0.004t = 0.48 - 1 \\
+        & -0.004t = -0.052 \\
+        & t = \frac{0.052}{0.004} \\
+        & t = 130h 
+    \end{align*}
+So the value for $MedTTF$ is
+    \begin{empheq}[box=\fbox]{align*}
+        MedTTF = 130h
+    \end{empheq}
+
 %----------------------------------------------------------------------------------------
 %	PROBLEM 8
 %----------------------------------------------------------------------------------------
