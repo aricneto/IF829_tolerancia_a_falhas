@@ -427,4 +427,84 @@ So the value for $MedTTF$ is
 
 \end{enumerate}
 
+%----------------------------------------------------------------------------------------
+%	PROBLEM 12
+%----------------------------------------------------------------------------------------
+
+\begin{question}
+    The time to failure of system is distributed according a Dagum distribution with shape parameters \( p = 0.5 \), \( a = 2 \), and the scale parameter equal to \( b = 2000h \). 
+    \begin{enumerate}[(a)]
+        \item What is the reliability at \( 720h \)?
+        \item Calculate the \( MTTF \). 
+    \end{enumerate}
+    Change \( a = 4 \) and calculate 
+    \begin{enumerate}[(c)]
+            \item the reliability at \( 720h \), and 
+            \item Calculate the \( MTTF \).
+    \end{enumerate}
+    
+    \[ \lambda(t) = \frac{ap}{t \left( \left( \frac{t}{b} \right)^a + 1 \right) \left( \left( \left( \frac{b}{t} \right)^a + 1 \right)^p - 1 \right)}, \quad t \geq 0. \]
+\end{question}
+
+\begin{enumerate}[(a)]
+    \item A reliability function será dada pelo seguinte complemento:
+    \[R(t) = 1- F(t)\]
+    Dado que
+    \[F(t) = \int_0^t \frac{ap}{t \left( \left( \frac{t}{b} \right)^a + 1 \right) \left( \left( \left( \frac{b}{t} \right)^a + 1 \right)^p - 1 \right)}\]
+    Substituindo os parâmetros informados na questão ($p = 0.5$; $a = 2$; $b = 2000h$ e $t = 720h$)
+    \begin{equation*}
+        F(720) = \int_0^{720} \frac{1}{t \left( \left( \frac{t}{2000} \right)^2 + 1 \right) \left( \left( \left( \frac{2000}{t} \right)^2 + 1 \right)^{0.5} - 1 \right)} 
+    \end{equation*}
+    Resolvendo a integral
+    \begin{align}
+        F(720) &= ln(2000) - ln(80\sqrt{706} - 720) \notag\\ 
+        &\approx 0.3526453302526999 \label{eq:q12f1}
+    \end{align}
+    Substituindo o valor encontrado para a reliability function
+    \begin{empheq}[box=\fbox]{align*}
+        R(720) &= 1 - F(720) \\
+        &= 1 - 0.3526453302526999 \\
+        &= 0.6473546697473001 \\
+        &\approx 64.73\%
+    \end{empheq}
+    \item Utilizaremos da relação entre a reliability function e o MTTF dada por
+    \[MTTF = \int_{0}^{t}R(t) \odif{t}\]
+    Como $R(t)$ é dado por
+    \[R(t) = 1 - F(t)\]
+    Temos que
+    \[MTTF = \int_{0}^{t} 1 - F(t)\]
+    Como calculado anteriormente em \eqref{eq:q12f1},
+    \[F(720) \approx 0.3526453302526999\]
+    Logo,
+    \begin{empheq}[box=\fbox]{align*}
+        MTTF &= \int_{0}^{720} 1 - 0.3526453302526999 \odif{t} \\
+        &= \int_{0}^{720} 0.6473546697473001 \odif{t} \\
+        &= \num{466.1}h \\
+    \end{empheq}
+    \item Refazendo os cálculos com o parâmetro $a$ alterado, temos que ($p = 0.5$; $a = 4$; $b = 2000h$ e $t = 720h$)
+    \[F(t) = \int_0^{720} \frac{2}{t \left( \left( \frac{t}{2000} \right)^4 + 1 \right) \left( \left( \left( \frac{2000}{t} \right)^4 + 1 \right)^{0.5} - 1 \right)}\]
+    Resolvendo a integral
+    \begin{align}
+        F(720) &= \ln{(4000000)} - \ln{\left(6400 \sqrt{397186} - 518400\right)} \notag\\
+        &\approx 0.1292399179574557 \label{eq:q12df}
+    \end{align}
+    Temos então
+    \begin{empheq}[box=\fbox]{align*}
+        R(720) &= 1 - F(720) \\
+        &= 1 - 0.1292399179574557 \\
+        &= 0.8707600820425443 \\
+        &\approx 87.07\%
+    \end{empheq}
+    \item De semelhante modo que fizemos para o item (b)
+    \[MTTF = \int_{0}^{t} 1 - F(t) \odif{t}\]
+    Como definido anteriormente em \eqref{eq:q12df}, para $a = 4$ temos
+    \[F(720) \approx 0.1292399179574557\]
+    Logo,
+    \begin{empheq}[box=\fbox]{align*}
+        MTTF &= \int_{0}^{720} 1 - 0.1292399179574557 \odif{t} \\
+        &= \int_{0}^{720} 0.8707600820425443 \odif{t} \\
+        &= \num{626.947}h
+    \end{empheq}
+\end{enumerate}
+
 \end{document}
