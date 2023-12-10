@@ -507,4 +507,78 @@ So the value for $MedTTF$ is
     \end{empheq}
 \end{enumerate}
 
+%----------------------------------------------------------------------------------------
+%	PROBLEM 12
+%----------------------------------------------------------------------------------------
+
+\begin{question}
+    Assuming the Dagum distribution depicted in the previous exercise, plot the hazard function considering the parameter \(a\) with respective values: 1, 2, and 4. Discuss the results.
+\end{question}
+
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}
+    \begin{axis}[
+        title={Graph of $\lambda(t)$, $a = 1$},
+        xlabel={$t$},
+        ylabel={$\lambda(t)$},
+        grid=major,
+        xmin=0, xmax=100,
+        ymin=0, ymax=0.05, % Adjust the y-axis range as needed
+        domain=0.001:100, % Avoid division by zero at t=0
+        samples=100,
+        unbounded coords=jump % This is to handle any undefined points in the graph
+    ]
+    
+    % Lambda function with a=1, b=2000, p=0.5
+    \addplot[blue, line width=1.5pt] {1 * 0.5 / (x * ((x/2000)^1 + 1) * (((2000/x)^1 + 1)^0.5 - 1))};
+    \end{axis}
+    \end{tikzpicture}
+\end{figure}
+
+Podemos observar que quando a = 1 temos um gráfico do tipo monotone decreasing hazard function. Isso nos transmite que um “produto” desse tipo usado é melhor e mais confiável do que um novo.
+
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}
+    \begin{axis}[
+        title={Graph of $\lambda(t)$, $a = 2$},
+        xlabel={$t$},
+        ylabel={$\lambda(t)$},
+        grid=major,
+        xmin=0, xmax=100,
+        ymin=0, ymax=0.05, % Adjust the y-axis range as needed
+        domain=0.001:100, % Avoid division by zero at t=0
+        samples=100,
+        unbounded coords=jump % This is to handle any undefined points in the graph
+    ]
+    
+    % Lambda function with a=1, b=2000, p=0.5
+    \addplot[blue, line width=1.5pt] {2 * 0.5 / (x * ((x/2000)^2 + 1) * (((2000/x)^2 + 1)^0.5 - 1))};
+    \end{axis}
+    \end{tikzpicture}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}
+    \begin{axis}[
+        title={Graph of $\lambda(t)$, $a = 4$},
+        xlabel={$t$},
+        ylabel={$\lambda(t)$},
+        grid=major,
+        xmin=0, xmax=100,
+        ymin=0, ymax=0.05, % Adjust the y-axis range as needed
+        domain=0.001:100, % Avoid division by zero at t=0
+        samples=100,
+        unbounded coords=jump % This is to handle any undefined points in the graph
+    ]
+    
+    % Lambda function with a=1, b=2000, p=0.5
+    \addplot[blue, line width=1.5pt] {(4 * 0.5) / (x * ((x/2000)^4 + 1) * (((2000/x)^4 + 1)^(0.5) - 1))};
+    \end{axis}
+    \end{tikzpicture}
+\end{figure}
+
+Para $a = 2$ e $a = 4$ temos a visualização do tipo constante. Uma vez que sua probabilidade de falha não vai ser alterada de acordo com o tempo, em toda sua vida útil o tempo de falha se mantém constante.
 \end{document}
