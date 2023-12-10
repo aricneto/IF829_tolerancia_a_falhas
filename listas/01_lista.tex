@@ -221,7 +221,7 @@ So the value for $MedTTF$ is
     A(720) = 1 - 0,4867 = 0.5133 \\
     \fbox{$A(720) = 51,33\%$}
 \end{gather*}
-\item In scenarios where the repair rate is constant, the hazard function becomes a valuable companion in calculating availability. This dynamic relationship,
+    \item In scenarios where the repair rate is constant, the hazard function becomes a valuable companion in calculating availability. This dynamic relationship,
  \begin{equation}
      A(t) = \frac{\mu}{\mu + \lambda} \notag
  \end{equation}
@@ -234,6 +234,7 @@ Underscores the significance of considering both reliability and the constant re
 \end{gather*}
 
 \end{enumerate}
+\newpage
 
 %----------------------------------------------------------------------------------------
 %	PROBLEM 6
@@ -247,7 +248,25 @@ Underscores the significance of considering both reliability and the constant re
 \end{question}
 
 \begin{enumerate}[(a)]
-    \item
+    \item Reliability function for Weibull distribution
+\begin{gather*}
+    R(t) = e^{-\left(\frac{t-\mu}{\beta}\right)^\alpha} \\
+    t = 720h; \quad \beta = 1000; \quad \alpha = 2; \quad \mu = 0
+\end{gather*}
+Therefore,
+\begin{align*}
+    R(720) &= e^{\left(\frac{720}{1000}\right)^2} \\
+    &= e^{-0.722} \\
+    &= 0.5954 \\
+    &\fbox{$R(720) = 59,54\%$}
+\end{align*}
+
+    \item The Mean Time To Failure (MTTF) is calculated using the formula: 
+\begin{gather*}
+    MTTF = \beta \times \Gamma(1 + \frac{1}{\alpha}) + \mu \\
+    MTTF = 10^3 \times \Gamma( 1 + \frac{1}{2}) + 0 \\
+    \fbox{$MTTF = 10^3 \times 0,886 = 886 h$}
+\end{gather*}
 \end{enumerate}
 
 %----------------------------------------------------------------------------------------
