@@ -20,6 +20,7 @@
 %----------------------------------------------------------------------------------------
 
 \documentclass{article}
+\usepackage[brazil]{babel}
 
 \input{structure.tex} % Include the file specifying the document structure and custom commands
 
@@ -29,7 +30,7 @@
 
 \title{Critical Systems Evaluation} % Title of the assignment
 
-\author{First Homework List\\ \texttt{acn2}} % Author name and email address
+\author{First Homework List\\ \texttt{acn2, pvoa}} % Author name and email address
 
 \date{CIN, UFPE --- \today} % University, school and/or department name(s) and a date
 
@@ -380,5 +381,50 @@ So the value for $MedTTF$ is
 \end{enumerate}
 
 %----------------------------------------------------------------------------------------
+%	PROBLEM 11
+%----------------------------------------------------------------------------------------
+
+\begin{question}
+    Consider the distribution of the time to failure of a database system is represented by a logistic distribution with parameters \(\mu = 600h\) and \(\beta = 25h\). 
+
+\begin{enumerate}[(a)]
+    \item What is the probability of survival at \(t = 500h\)?
+    \item Calculate \( \text{Med}TTF \).
+\end{enumerate}
+\large\[ F(t) = \frac{1}{e^{-\frac{t-\mu}{\beta}} + 1} \]
+\end{question}
+
+\begin{enumerate}[(a)]
+    \item Utilizando a expressão dada na questão para a função de distribuição cumulativa complementar temos que:
+    \[F(t) = \frac{1}{1+e^{-\frac{t-\mu}{\beta}}}\]
+    Como temos que $t = 500h$, $\mu = 600h$ e $\beta = 25h$
+    \begin{empheq}[box=\fbox]{align*}
+        F(500) &= \frac{1}{1+e^{-\frac{500-600}{25}}} \\
+        &= \frac{1}{1+e^4} \\
+        &= 0.01798 \\
+        &= 17.98\%
+    \end{empheq}
+    Logo, temos que a probabilidade de sobrevivência desse sistema nesse determinado tempo é de \fbox{$17.98\%$}
+    \item Para calcularmos o $MedTTF$ devemos igualar função de distribuição cumulativa complementar ao valor de $0.5$ ($50\%$)
+    \begin{gather*}
+        \frac{1}{1+e^{-\frac{t-\mu}{\beta}}} = 0.5 \\
+        1 = 0.5\times(1+e^{-\frac{t-\mu}{\beta}}) \\
+        1 = 0.5 + 0.5e^{-\frac{t-\mu}{\beta}} \\
+        0.5 = 0.5e^{-\frac{t-\mu}{\beta}}
+    \end{gather*}
+    Utilizando de manipulação algébrica e dividindo ambos os lados por $0.5$ para simplificar a expressão
+    \[1 = e^{-\frac{t-\mu}{\beta}}\]
+    Usando do logaritmo natural em ambos os lados chegamos em
+    \[ln(1) = -\frac{t-\mu}{\beta}\]
+    Como o ln(1) = 0 ficamos com
+    \[0 = -\frac{t-\mu}{\beta}\]
+    Por fim, chegamos em
+    \[t=\mu\]
+    E podemos concluir que o MedTTF é
+    \begin{empheq}[box=\fbox]{align*}
+        MedTTF = t = 600h
+    \end{empheq}
+
+\end{enumerate}
 
 \end{document}
