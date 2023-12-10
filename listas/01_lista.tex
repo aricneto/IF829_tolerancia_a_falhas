@@ -282,6 +282,18 @@ Therefore,
 
 \begin{enumerate}[(a)]
     \item
+\begin{gather*}
+    R(t) = e^{-\left(\frac{t-\mu}{\beta}\right)^\alpha} \\
+    t = 720h;\quad \beta = 1000;\quad \alpha = 0,8;\quad \mu = 0 \\
+    R(720) = e^{(0,72)^{0,8}} = 0,4639 \\
+    \fbox{$R(720) = 46,39\%$}
+\end{gather*}
+    \item
+\begin{gather*}
+    MTTF = \beta \times \Gamma(1 + \frac{1}{\alpha}) + \mu \\
+    MTTF = 10^3 \times \Gamma(1 + \frac{1}{0,8}) + 0 \\
+    \fbox{$MTTF = 10^3 \times 1,133 = 1133 h$}
+\end{gather*}
 \end{enumerate}
 
 %----------------------------------------------------------------------------------------
