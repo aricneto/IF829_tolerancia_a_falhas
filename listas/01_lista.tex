@@ -30,7 +30,7 @@
 
 \title{Critical Systems Evaluation} % Title of the assignment
 
-\author{First Homework List\\ Equipe: \texttt{aasb2, acn2, pvoa}} % Author name and email address
+\author{First Homework List\\ Equipe: \texttt{aasb2, acn2, pvoa, vbmp}} % Author name and email address
 
 \date{CIn, UFPE --- \today} % University, school and/or department name(s) and a date
 
@@ -209,7 +209,30 @@ So the value for $MedTTF$ is
 \end{question}
 
 \begin{enumerate}[(a)]
-    \item
+    \item The exponential distribution has a constant Hazard function. Over a span of two months, equivalent to 1440 hours, we can explore this characteristic using the reliability function.
+\begin{gather*}
+    R(t) = e^{-\lambda t};\quad \lambda = 5*10^{-4};\quad   t = 1440 \\
+    R(1440) = e^{-5 \times 10^4 \times 1440} = e^{-0,72} \\
+    \fbox{$R(1440) = 0.4867 = 48,67\%$}
+\end{gather*}
+    \item Availability and reliability are closely intertwined concepts. Traditionally, availability is expressed as the complement of reliability
+\begin{gather*}
+    A(t) = 1 - R(t) \\
+    A(720) = 1 - 0,4867 = 0.5133 \\
+    \fbox{$A(720) = 51,33\%$}
+\end{gather*}
+\item In scenarios where the repair rate is constant, the hazard function becomes a valuable companion in calculating availability. This dynamic relationship,
+ \begin{equation}
+     A(t) = \frac{\mu}{\mu + \lambda} \notag
+ \end{equation}
+Underscores the significance of considering both reliability and the constant repair rate to gain a comprehensive understanding of system performance over time.
+\begin{gather*}
+    \lambda = 5 * 10^{-4} \\ 
+    \mu = 5 * 10^{-2} \\
+    A = \frac{5 * 10^{-2}}{5 * 10^{-2} + 5 * 10^{-4}} \\
+    \fbox{$A = 99\%$}
+\end{gather*}
+
 \end{enumerate}
 
 %----------------------------------------------------------------------------------------
