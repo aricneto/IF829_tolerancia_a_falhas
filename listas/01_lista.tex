@@ -215,21 +215,28 @@ So the value for $MedTTF$ is
     R(1440) = e^{-5 \times 10^4 \times 1440} = e^{-0,72} \\
     \fbox{$R(1440) = 0.4867 = 48,67\%$}
 \end{gather*}
-    \item Availability and reliability are closely intertwined concepts. Traditionally, availability is expressed as the complement of reliability
-\begin{gather*}
-    A(t) = 1 - R(t) \\
-    A(720) = 1 - 0,4867 = 0.5133 \\
-    \fbox{$A(720) = 51,33\%$}
-\end{gather*}
+    \item We can calculate the instantaneous availability using the equation: 
+    \begin{equation*}
+        A(t) = \frac{\mu}{\mu + \lambda} + \frac{\lambda}{\mu + \lambda}  e^{-(\lambda + \mu) t} 
+    \end{equation*}
+    Thus, with
+    \begin{gather*}
+        \lambda = 5 \times 10^{-4} \qquad \mu = 5 \times 10^{-2}
+    \end{gather*}
+    We have
+    \begin{empheq}[box=\fbox]{align*}
+        A(720) &= \frac{5 \times 10^{-2}}{5 \times 10^{-4} + 5 \times 10^{-2}} + \frac{5 \times 10^{-4}}{5 \times 10^{-4} + 5 \times 10^{-2}} e^{-(5 \times 10^{-4} + 5 \times 10^{-2}) 720} \\
+        &\approx 99\%
+    \end{empheq}
     \item In scenarios where the repair rate is constant, the hazard function becomes a valuable companion in calculating availability. This dynamic relationship,
  \begin{equation}
      A(t) = \frac{\mu}{\mu + \lambda} \notag
  \end{equation}
 Underscores the significance of considering both reliability and the constant repair rate to gain a comprehensive understanding of system performance over time.
 \begin{gather*}
-    \lambda = 5 * 10^{-4} \\ 
-    \mu = 5 * 10^{-2} \\
-    A = \frac{5 * 10^{-2}}{5 * 10^{-2} + 5 * 10^{-4}} \\
+    \lambda = 5 \times 10^{-4} \\ 
+    \mu = 5 \times 10^{-2} \\
+    A = \frac{5 \times 10^{-2}}{5 \times 10^{-2} + 5 \times 10^{-4}} \\
     \fbox{$A = 99\%$}
 \end{gather*}
 
