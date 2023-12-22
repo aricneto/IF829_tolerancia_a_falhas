@@ -47,7 +47,7 @@
 %----------------------------------------------------------------------------------------
 \setcounter{Question}{4}
 \begin{question}
-    Table 3 summarizes the reliability data test of eighty servers $(n = 80)$ during $13500h$. Inspections were carried out every week $(500h)$. The whole observation was finished at $13500h$. Table 3 shows the time instants that represent the end of each of the twenty-seven intervals $(Column \ t_i)$, the number of failed servers in the respective interval $(Column \ r_i)$, and the number of censored computer in the interval $(Column \ c_i)$. Adopted a nonparametric method to draw the graphs
+    Table 3 summarizes the reliability data test of eighty servers $(n = 80)$ during $13500h$. Inspections were carried out every week $(500h)$. The whole observation was finished at $13500h$. Table 3 shows the time instants that represent the end of each of the twenty-seven intervals $(Column \ t_i)$, the number of failed servers in the respective interval $(Column \ r_i)$, and the number of censored computer in the interval $(Column \ c_i)$. Adopted a non-parametric method to draw the graphs
     \begin{enumerate}[label=(\alph*)]
         \item $\hat{R}(t) \times t$
         \item $\hat{F}(t) \times t$
@@ -91,6 +91,277 @@
 \end{enumerate}
 
 %----------------------------------------------------------------------------------------
+%	PROBLEM 7
+%----------------------------------------------------------------------------------------
+
+\setcounter{Question}{6}
+\begin{question}
+    What are the pros and cons of the following parametric reliability data analysis:
+    \begin{enumerate}[label=(\alph*)]
+        \item graphical methods
+
+        \item methods of moments, and
+        \item  maximum likelihood estimation methods.
+    \end{enumerate}
+\end{question}
+
+\begin{enumerate}[label=(\alph*)]
+    \item \textbf{Graphical methods:}
+
+          Pros:
+          \begin{itemize}
+              \item Easy and simple to use
+              \item Can be visually checked
+          \end{itemize}
+          Cons:
+          \begin{itemize}
+              \item They are not precise
+          \end{itemize}
+
+    \item \textbf{Methods of moments:}
+
+          Pros:
+          \begin{itemize}
+              \item Easy to implement
+              \item Flexibility
+              \item  Does not depend on distibution assumption
+          \end{itemize}
+          Cons:
+          \begin{itemize}
+              \item Sensitive to outliers
+              \item Might ignore some distribution aspects
+          \end{itemize}
+
+    \item \textbf{Likelihood estimation methods:}
+
+          Pros:
+          \begin{itemize}
+              \item Less Likely to Be Biased
+          \end{itemize}
+          Cons:
+          \begin{itemize}
+              \item Not precise for small number of failures
+              \item It might be hard to calculate in some cases
+          \end{itemize}
+\end{enumerate}
+
+%----------------------------------------------------------------------------------------
+%	PROBLEM 8
+%----------------------------------------------------------------------------------------
+
+\begin{question}
+    Assume the reliability experiment in which sixty servers (n = 60) were observed in an accelerated reliability test. The times each server failed were recorded in Table \ref{table:4} (complete data).
+    \begin{enumerate}[label=(\alph*)]
+        \item Conduct an exploratory analysis and choose a candidate probability distribution representing the data set.
+        \item  Obtain a point estimate of distribution parameters and conduct goodness of fitting. If the candidate distribution does not fit the data set, choose another one until finding a
+              suitable distribution.
+        \item  Obtain a point estimate of the $MTTF$
+        \item Estimate the $MTTF$ confidence interval, adopting 5\% of significance using a semi-parametric bootstrap.
+        \item  Estimate the $R(t)$, $F(t)$, $f(t)$ and $\lambda(t)$ at $1000 h$
+    \end{enumerate}
+
+\end{question}
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|*{12}{c|}}
+        \hline
+        $i$ & $t_i$ (h) & $i$ & $t_i$ (h) & $i$ & $t_i$ (h) & $i$ & $t_i$ (h) & $i$ & $t_i$ (h) & $i$ & $t_i$ (h) \\
+        \hline
+        1   & 765.32    & 11  & 1822.54   & 21  & 515.21    & 31  & 4569.68   & 41  & 408.16    & 51  & 338.18    \\
+        2   & 736.36    & 12  & 2026.03   & 22  & 5400.53   & 32  & 4104.01   & 42  & 1509.31   & 52  & 197.89    \\
+        3   & 4688.02   & 13  & 211.91    & 23  & 1460.71   & 33  & 728.45    & 43  & 434.26    & 53  & 584.37    \\
+        4   & 2181.27   & 14  & 1109.13   & 24  & 1672.60   & 34  & 1188.55   & 44  & 2005.96   & 54  & 86.76     \\
+        5   & 4085.90   & 15  & 1189.89   & 25  & 640.21    & 35  & 640.83    & 45  & 924.12    & 55  & 2204.17   \\
+        6   & 9044.38   & 16  & 1348.37   & 26  & 711.69    & 36  & 5613.10   & 46  & 1510.17   & 56  & 6591.52   \\
+        7   & 3573.45   & 17  & 389.56    & 27  & 190.62    & 37  & 247.44    & 47  & 2548.00   & 57  & 6023.71   \\
+        8   & 7201.78   & 18  & 3563.30   & 28  & 4266.00   & 38  & 1647.28   & 48  & 157.32    & 58  & 398.62    \\
+        9   & 1237.32   & 19  & 2082.53   & 29  & 1087.26   & 39  & 500.76    & 49  & 399.17    & 59  & 4064.59   \\
+        10  & 740.13    & 20  & 3322.64   & 30  & 489.08    & 40  & 3510.87   & 50  & 2020.38   & 60  & 2467.03   \\
+        \hline
+    \end{tabular}
+    \label{table:4}
+\end{table}
+\begin{enumerate}[label=(\alph*)]
+    \item The result of the exploratory analysis was the following:
+          \begin{flushleft}
+              Sample Size, $n$: 60 \\
+              Mean: 2089.64000 \\
+              Median: 1404.54000 \\
+              Midrange: 4565.57000 \\
+              RMS: 2896.88557 \\
+              Variance, $s^2$: 4093576.93357 \\
+              Standard Deviation, $s$: 2023.25899 \\
+              Mean Absolute Deviation: 1574.37167 \\
+              Range: 8957.62000 \\
+              Coefficient of Variation: 96.82333\%
+
+              Minimum: 86.76 \\
+              1st Quartile: 549.79000 \\
+              2nd Quartile: 1404.54000 \\
+              3rd Quartile: 3416.75500 \\
+              Maximum: 9044.38
+
+              Sum: 125378.40000 \\
+              Sum of Squares: 503516758.85680
+
+              95\% CI for the Mean:
+              $1566.97680 < \text{mean} < 2612.30320$
+
+              95\% CI for the Standard Deviation:
+              $1714.98373 < \text{SD} < 2467.69075$
+
+              95\% CI for the Variance:
+              $2941169.20755 < \text{VAR} < 6089497.63452$
+          \end{flushleft}
+
+          \begin{figure}[H]
+              \centering
+              \includegraphics[width=0.8\linewidth]{statdisk_boxplot_q8.png}
+              \caption{Boxplot}
+              \label{fig:boxplot_q8}
+          \end{figure}
+
+          \begin{figure}[H]
+              \centering
+              \includegraphics[width=0.8\linewidth]{statdisk_histogram_q8.png}
+              \caption{Histogram}
+              \label{fig:histogram_q8}
+          \end{figure}
+
+          \begin{figure}[H]
+              \centering
+              \includegraphics[width=0.8\linewidth]{statdisk_normal_quantile_plot_q8.png}
+              \caption{Normal Quantile Plot}
+              \label{fig:normalquantile_q8}
+          \end{figure}
+
+          According to \ref{fig:normalquantile_q8} we can already discard the Normal distribution. Based on the Box Plot in \ref{fig:boxplot_q8} and the Histogram in \ref{fig:histogram_q8} a good guess would be the exponential distribution.
+
+    \item Before conducting the the goodness of fitting it is necessary to estimate the distribution parameter $\lambda$ for $f(t)=\lambda e^{-\lambda t}$, to do it, it can be used the maximum likelihood method, it can be done substituting the obtained values for the distribution on the following equation:
+
+          \begin{equation}
+              \lambda=\frac{n}{\sum\limits_{i=1}^{n}t_i}
+          \end{equation}
+
+
+          where $n=60$ and $\sum\limits_{i=1}^{n}t_i=125378.40$. so the value for $\lambda$ is:
+          \begin{empheq}[box=\fbox]{align*}
+              \lambda\approx 0.0004786
+          \end{empheq}
+
+          The Kolmogorov Smirnov can be used to check if the distribution fits:
+          \begin{figure}[H]
+              \centering
+              \includegraphics[width=1\linewidth]{ks_q8.png}
+              \caption{Kolmogorov Smirnov Method}
+              \label{fig:graphical2_q8}
+          \end{figure}
+
+          As the Kolmogorov Smirnov test failed to reject the null hypothesis so it is safe to assume
+          the exponential distribution may fit the data.
+
+          \begin{figure}[H]
+              \centering
+              \includegraphics[width=1\linewidth]{easyfit_q8.png}
+              \caption{Easy Fit}
+              \label{fig:easyfit_q8}
+          \end{figure}
+
+          Using easy fit to check if the exponential method it can be seem that the exponential distribution ranks pretty high among the possible distributions that can fit the data using the Kolmogrov Smirnov, Anderson Darling and Chi-Squared methods, There are better distributions according to Easy Fit for the data, but it will be used the exponential distribution because it was the one first assumed and the null hypothesis was not rejected.
+
+    \item An estimation for $MTTF$ can be obtained by simply taking the mean from the failure time on the table, or by calculating $1/\lambda$. The result obtained after doing this is:
+
+          \begin{empheq}[box=\fbox]{align*}
+              MTTF = \frac{\sum\limits_{i=1}^{n}t_i}{n} = 2089.64
+          \end{empheq}
+
+
+    \item Using the following code in python to apply the semi-parametric bootstrap to the data:
+
+          \lstset{
+              basicstyle=\ttfamily,
+              numbers=left,
+              numberstyle=\tiny\color{gray},
+              breaklines=true,
+              keywordstyle=\color{blue},
+              commentstyle=\color{green!40!black},
+              stringstyle=\color{orange},
+              frame=single,
+              language=Python
+          }
+
+
+          \begin{lstlisting}
+    import numpy as np
+    
+    data = [765.32, 1822.54, 515.21, 4569.68, 408.16, 338.18, 736.36, 2026.03, 5400.53, 4104.01, 1509.31, 197.89, 4688.02, 211.91, 1460.71, 728.45, 434.26, 584.37, 2181.27, 1109.13, 1672.6, 1188.55, 2005.96, 86.76, 4085.9, 1189.89, 640.21, 640.83, 924.12, 2204.17, 9044.38, 1348.37, 711.69, 5613.1, 1510.17, 6591.52, 3573.45, 389.56, 190.62, 247.44, 2548.0, 6023.71, 7201.78, 3563.3, 4266.0, 1647.28, 157.32, 398.62, 1237.32, 2082.53, 1087.26, 500.76, 399.17, 4064.59, 740.13, 3322.64, 489.08, 3510.87, 2020.38, 2467.03]
+    data.sort()
+    data = np.array(data)
+    iterations = 1000
+    MTTF = np.mean(data)
+    mttfs = []
+    
+    for _ in range(iterations):
+      # non_parametric_data = np.random.choice(data,size=len(data),replace=True)
+      parametric_data = np.random.exponential(scale=MTTF, size=len(data))
+      mttfs.append(np.mean(parametric_data))
+    
+    mttfs.sort()
+    confidence_interval = np.percentile(mttfs, [2.5, 97.5])
+    print(confidence_interval)
+    \end{lstlisting}
+
+          the confidence interval for $MTTF$ with 5\% of significance is :
+
+
+          \begin{empheq}[box=\fbox]{align*}
+              [1624.6652h,~2631.3845h]
+          \end{empheq}
+
+    \item
+    For an exponential distribution the Reliability function is:
+    \begin{equation}
+        R(t)=e^{-\lambda t}=e{-0.0004786 t}
+    \end{equation}
+
+    so for $t=1000h$ then:
+    \begin{empheq}[box=\fbox]{align*}
+        R(t=1000)=e^{-0.0004786 \cdot 1000} \approx 0.619
+    \end{empheq}
+
+    For an exponential distribution the Failure function is:
+    \begin{equation}
+        F(t)=1-R(t)
+    \end{equation}
+
+    so for $t=1000h$ then:
+    \begin{empheq}[box=\fbox]{align*}
+        F(t=1000)=1-0.619 \approx 0.380
+    \end{empheq}
+
+    For an exponential distribution the density function is:
+    \begin{equation}
+        f(t)=\lambda e^{-\lambda t}=0.0004786\cdot e^{-0.0004786 t}
+    \end{equation}
+
+    So for $t=1000h$ then:
+    \begin{empheq}[box=\fbox]{align*}
+        f(t=1000)=0.0004786\cdot e^{-0.0004786 \cdot 1000} \approx 0.000297
+    \end{empheq}
+    For an exponential distribution the hazard function is constant:
+
+    \begin{equation}
+        \lambda(t)=\lambda=0.0004786
+    \end{equation}
+
+    So for $t=1000h$ then:
+    \begin{empheq}[box=\fbox]{align*}
+        \lambda(t=1000)=\lambda=0.0004786
+    \end{empheq}
+\end{enumerate}
+
+%----------------------------------------------------------------------------------------
 %	PROBLEM 9
 %----------------------------------------------------------------------------------------
 \setcounter{Question}{8}
@@ -112,7 +383,7 @@
     And:
     \begin{enumerate}[label=(\alph*), start=9]
         \item \(\widehat{MTTF}\)
-        \item Estimate the confidence interval using nonparametric bootstrap.
+        \item Estimate the confidence interval using non-parametric bootstrap.
         \item Compare the results with Exercise 8 and comment.
     \end{enumerate}
 \end{question}
@@ -208,7 +479,7 @@ As we have ungrouped and complete reliability data, we can use a simple method t
         \[\widehat{MTTF} = \frac{\sum_{i=1}^{n}t_i}{n}\]
         Computing this, we get:
         \[\fbox{$MTTF = 2089.64h$}\]
-        \item Assuming a confidence level of 95\%, upon calculating the confidence interval using non-parametric bootstrap, we get \fbox{MTTF $\in (1599.03h, 2609.37h)$}
+        \item Assuming a confidence level of 95\%, upon calculating the confidence interval using non-parametric bootstrap, we get \fbox{MTTF $\in (1599.03h,~ 2609.37h)$}
         \item The results compared to the ones found in Exercise 8 are very close, which demonstrates that the semi-parametric approach chosen in the previous exercise seems to accurately represent the original dataset.
     \end{enumerate}
     
