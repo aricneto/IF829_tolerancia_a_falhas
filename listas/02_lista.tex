@@ -43,6 +43,444 @@
 \maketitle % Print the title
 
 %----------------------------------------------------------------------------------------
+%	PROBLEM 1
+%----------------------------------------------------------------------------------------
+\begin{question}
+    Comment your understanding of:
+    \begin{enumerate}[label=(\alph*)]
+        \item grouped and ungrouped data set
+        \item complete and censored data
+        \item  operational data and test generated data
+        \item left-censoring
+        \item right-censoring type 1 and type 2
+        \item and multi censored data
+    \end{enumerate}
+    \end{question}
+
+\begin{enumerate}[label=(\alph*)]
+    \item \textbf{grouped and ungrouped data set:} 
+    
+        Grouped data set is organized into intervals or groups, and you're given the frequency of observations within each group. On ungrouped data set each individual observation is listed separately without grouping into intervals.
+           
+    \item \textbf{complete and censored data:}
+    
+        Complete data is a dataset where every data point has been observed or measured without any missing values.
+        Censored data, is data in which the information about some values is incomplete because the measurements are constrained in some way. This can be left-censored, right-censored, or interval-censored.
+        
+    \item \textbf{operational data and test generated data:}
+    
+        Operational Data, the is data collected during the normal operation of a system or process.
+        Test-Generated Data, the data specifically created for testing purposes, often in a controlled environment to assess the performance of a system or model.
+    \item \textbf{left-censoring:}
+    
+        Occurs when the lower bound of a measurement is known, but values below this bound are not observed or recorded. It's a form of incomplete data where the true values are censored on the left side.
+        
+    \item \textbf{light-censoring type 1 and type 2:}
+    
+       In the right-censoring type 1 the values above a certain threshold are not observed. The data is truncated at the right end.
+       In the right-censoring type 2 the values above a certain threshold are recorded as being above that threshold, but the exact values are not known. This is common in survival analysis, where the event of interest may not have occurred for some subjects.
+        
+    \item \textbf{and multi censored data:}
+    
+        Refers to a situation where data is censored in multiple ways. For example, you might have both left-censored and right-censored data in a single dataset.
+\end{enumerate}
+
+%----------------------------------------------------------------------------------------
+%	PROBLEM 3
+%----------------------------------------------------------------------------------------
+
+\setcounter{Question}{2}
+\begin{question}
+Assume a set of sixty servers ($n = 60$) were place in an accelerate reliability test. The test finished when all servers
+presented a failure. In Table 1, Columns TTF$i$ present the time to failure of the servers in ascending order.
+\ref{table:4} (complete data).
+    \begin{enumerate}[label=(\alph*)]
+        \item Using a non-parametric method, calculate $R^(t)$, and $F^(t)$ at $t = 1800.82h$
+        \item  Draw $R^(t) \times t$, and $F^(t) \times t$
+        \item  Calculate $MTTF$
+        \item Estimate the confidence interval of the $MTTF$ using non-parametric bootstrap.
+    \end{enumerate}
+    
+\end{question}
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|*{12}{c|}}
+        \hline
+        $i$ & $TTFi$ (h) & $TTFi$ & $TTFi$ (h) & $TTFi$ & $TTFi$ (h) & $TTFi$ \\
+        \hline
+        1 & 1088.55 & 1808.22 & 2295.93 & 2677.00 & 3715.81 & 4262.82 \\
+        2 & 1421.70 & 1808.77 & 2368.95 & 2734.39 & 3716.82 & 4362.63 \\
+        3 & 1501.50 & 1835.81 & 2438.96 & 2795.40 & 3770.61 & 4500.37 \\
+        4 & 1534.56 & 1859.16 & 2509.08 & 2968.35 & 3808.22 & 4658.01 \\
+        5 & 1611.89 & 1889.69 & 2592.39 & 3106.45 & 3823.24 & 4775.04 \\
+        6 & 1629.61 & 2044.81 & 2601.27 & 3282.68 & 3844.85 & 4798.53 \\
+        7 & 1665.32 & 2065.61 & 2629.69 & 3601.69 & 3943.01 & 4958.32 \\
+        8 & 1740.20 & 2179.10 & 2635.79 & 3623.20 & 3988.39 & 5260.35 \\
+        9 & 1799.39 & 2249.68 & 2660.02 & 3627.13 & 4118.64 & 5508.57 \\
+        10 & 1800.82 & 2261.86 & 2674.43 & 3631.10 & 4216.89 & 6968.88 \\
+        j & 1 & 2 & 3 & 4 & 5 & 6 \\
+        \hline
+    \end{tabular}
+    \caption{Your Table Caption Here}
+    \label{table:4}
+\end{table}
+\begin{enumerate}[label=(\alph*)]
+    \item Using a non-parametric method, calculate $R^(t)$, and $F^(t)$ at $t = 1800.82h$       \begin{flushleft}
+            The first step is to have the table in ascending order, which in this case, has already been provided to us with such an order
+
+            Now we have to determine the number of servers that failed before or at $t = 1800.82$ hours, which can be calculated as
+
+            \(R^(t) = \frac{\text{Numbers of servers surviving at t}}{\text{Total number of servers}}\)
+
+            and 
+            
+            \(F^(t) = 1 - R^(t)\)
+
+            With the info of the table we know that the number of servers failing before or at t = 1800.82 hours is 10, and the total is 60.
+
+            \(R^(1800.82) = \frac{10}{60}\)  \\
+
+            \(F^(1800.82) = 1 - \frac{10}{60}\) \\
+
+        
+            So, the non-parametric estimates $R^(1800.82)$ and $F^(1800.82)$ are approximately:
+            \[\fbox{$\hat{R}(1800.82) = 0.1666$}\]
+            \[\fbox{$\hat{F}(1800.82) = 0.8333$}\]
+
+        \end{flushleft}
+
+    \item Draw $R^(t) \times t$, and $F^(t) \times t$
+        \begin{flushleft}
+            \begin{figure}[H]
+                \centering
+                \includegraphics[width=0.7\linewidth]{ft_q3.png}
+                \label{fig:F^(t) x t}
+            \end{figure}
+        \end{flushleft}
+
+        \begin{flushleft}
+            \begin{figure}[H]
+                \centering
+                \includegraphics[width=0.7\linewidth]{rt_q3.png}
+                \label{fig:R^(t) x t}
+            \end{figure}
+        \end{flushleft}
+    
+
+    \item Calculate $MTTF$
+        The Mean Time To Failure ($MTTF$) can be calculated by finding the average time to failure for all the servers. The formula for $MTTF$ is:
+        \begin{gather*}
+            MTTF = \frac{\text{Sum of TTF for all units}}{\text{Number of units}} \\
+            MTTF = \frac{1088.55+1808.22+\cdots+6968.88}{60} \\
+            MTTF = \frac{1088.55+1808.22+\cdots+6968.88}{60} \\
+            MTTF = \frac{182.250,15}{60} \\
+            \fbox{MTTF = 3037.50}
+        \end{gather*}
+
+        
+    \item Estimate the confidence interval of the $MTTF$ using non-parametric bootstrap.
+        \begin{flushleft}
+                \item Using the following code in python to apply the non-parametric bootstrap to the data:
+
+            \lstset{
+              basicstyle=\ttfamily,
+              numbers=left,
+              numberstyle=\tiny\color{gray},
+              breaklines=true,
+              keywordstyle=\color{blue},
+              commentstyle=\color{green!40!black},
+              stringstyle=\color{orange},
+              frame=single,
+              language=Python
+            }
+        
+        
+            \begin{lstlisting}
+            import numpy as np
+            
+            # Given data
+            failure_times = np.array([
+                1088.55, 1808.22, 2295.93, 2677.00, 3715.81, 4262.82,
+                1421.70, 1808.77, 2368.95, 2734.39, 3716.82, 4362.63,
+                1501.50, 1835.81, 2438.96, 2795.40, 3770.61, 4500.37,
+                1534.56, 1859.16, 2509.08, 2968.35, 3808.22, 4658.01,
+                1611.89, 1889.69, 2592.39, 3106.45, 3823.24, 4775.04,
+                1629.61, 2044.81, 2601.27, 3282.68, 3844.85, 4798.53,
+                1665.32, 2065.61, 2629.69, 3601.69, 3943.01, 4958.32,
+                1740.20, 2179.10, 2635.79, 3623.20, 3988.39, 5260.35,
+                1799.39, 2249.68, 2660.02, 3627.13, 4118.64, 5508.57,
+                1800.82, 2261.86, 2674.43, 3631.10, 4216.89, 6968.88
+            ])
+            
+            # Number of bootstrap samples
+            num_samples = 1000
+            
+            # Initialize an array to store bootstrap MTTF values
+            bootstrap_mttf = np.zeros(num_samples)
+            
+            # Bootstrap resampling and MTTF calculation
+            for i in range(num_samples):
+                bootstrap_sample = np.random.choice(failure_times, size=len(failure_times), replace=True)
+                bootstrap_mttf[i] = np.mean(bootstrap_sample)
+            
+            # Calculate the confidence interval
+            confidence_interval = np.percentile(bootstrap_mttf, [2.5, 97.5])
+            
+            print("Bootstrap Mean Time To Failure (MTTF):", np.mean(bootstrap_mttf))
+            print("Bootstrap 95% Confidence Interval:", confidence_interval)
+            \end{lstlisting}
+            
+            
+            Bootstrap Mean Time To Failure (MTTF): $3031.8683h$ \\
+            \fbox{Bootstrap 95\% Confidence Interval: $[2711.7305h,~ 3336.1719h]$}
+        \end{flushleft}
+
+%----------------------------------------------------------------------------------------
+%	PROBLEM 4
+%----------------------------------------------------------------------------------------
+\begin{question}
+Sixty servers ($n = 60$) went through an accelerated reliability test. However, not all servers were kept until the end of the test; that is, some of them were removed (censured) from the test when they were still
+operational. Table 2 is a multi-column table, where (j,i), j $\in$ {1,2,3}, and i $\in$ {1..20}. The 
+table shows the event times (Columns $ti$) - failure or censoring. Columns $\delta i$ represent failures (1) or censoring (0). Columns $ti$ - $ti-1$ present the time interval between two consecutive events, and Columns i specify the event order.
+\ref{table:4} (complete data).
+    \begin{enumerate}[label=(\alph*)]
+        \item Using a non-parametric method draw the graphs a) $R^(t) \times t$ and $F^(t) \times t$
+        \item Estimate $R^(3088.73h)$
+    \end{enumerate}
+\end{question}
+\begin{enumerate}[label=(\alph*)]
+    \item Using a non-parametric method draw the graphs a) $R^(t) \times t$ and $F^(t) \times t$
+    \begin{flushleft}
+            \item Using the following code in python to apply the non-parametric bootstrap to the data:
+
+            \lstset{
+              basicstyle=\ttfamily,
+              numbers=left,
+              numberstyle=\tiny\color{gray},
+              breaklines=true,
+              keywordstyle=\color{blue},
+              commentstyle=\color{green!40!black},
+              stringstyle=\color{orange},
+              frame=single,
+              language=Python
+            }
+        
+        
+            \begin{lstlisting}
+            # Given data
+            t_values = np.array([
+                19.11, 1544.00, 4196.34,
+                25.62, 1558.04, 4278.78,
+                269.48, 1947.92, 4623.43,
+                431.81, 2115.51, 4668.51,
+                520.48, 2307.92, 4862.93,
+                533.40, 2347.95, 5120.96,
+                684.16, 2413.24, 5400.25,
+                709.78, 2509.03, 5693.01,
+                830.20, 2782.08, 6120.47,
+                861.62, 3088.73, 6656.40,
+                897.72, 3153.86, 8042.32,
+                915.40, 3156.66, 8893.73,
+                939.79, 3162.79, 9022.43,
+                1037.99, 3276.37, 9216.15,
+                1113.06, 3313.52, 9301.77,
+                1276.45, 3323.28, 9379.77,
+                1283.82, 3492.84, 9681.48,
+                1353.88, 3559.71, 10351.36,
+                1425.11, 3966.95, 10993.42,
+                1489.69, 3978.91, 13496.11
+            ])
+            
+            delta_values = np.array([
+                0, 1, 0, 1, 0,
+                1, 1, 1, 1, 1,
+                1, 0, 1, 1, 1,
+                1, 0, 1, 0, 1,
+                0, 1, 0, 1, 0,
+                1, 0, 1, 0, 1,
+                1, 0, 1, 0, 1,
+                0, 1, 0, 1, 0,
+                1, 0, 1, 1, 1,
+                0, 1, 1, 1, 1,
+                1, 1, 0, 1, 1,
+                1, 0, 1, 1, 1,
+                0, 0, 1, 0, 1,
+                0, 1, 1, 1, 0,
+                0, 1, 0, 1, 0,
+                1, 0, 1, 1, 0
+            ])
+            
+            delta_values = np.array([0, 1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 0, 0, 1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 0, 0]) 
+            
+            # Create Kaplan-Meier estimator
+            kmf = KaplanMeierFitter()
+            print(len(t_values))
+            kmf.fit(durations=t_values, event_observed=delta_values)
+            
+            # Plotting R(t)
+            plt.figure(figsize=(12, 6))
+            kmf.plot_survival_function(ci_show=False)
+            plt.title('Reliability Estimate $\\hat{R}(t)$')
+            plt.xlabel('Time (hours)')
+            plt.ylabel('Reliability')
+            
+            # Plotting F(t)
+            plt.figure(figsize=(12, 6))
+            kmf.plot_cumulative_density(ci_show=False)
+            plt.title('Cumulative Distribution Function $\\hat{F}(t)$')
+            plt.xlabel('Time (hours)')
+            plt.ylabel('Cumulative Probability')
+            
+            plt.show()
+            \end{lstlisting}
+
+        \begin{flushleft}
+            \begin{figure}[H]
+                \centering
+                \includegraphics[width=0.7\linewidth]{ft_q4.png}
+                \label{fig:q4Ftt}
+            \end{figure}
+        \end{flushleft}
+
+        \begin{flushleft}
+            \begin{figure}[H]
+                \centering
+                \includegraphics[width=0.7\linewidth]{rt_q4.png}
+                \label{fig:q4Rtt}
+            \end{figure}
+        \end{flushleft}
+
+        \end{flushleft}
+        
+    \item Estimate $R^(8500h)$ 
+        We are going to use the cumulative number of failures and the cumulative number of censored observations, which are given, respectively, by:
+        
+        \(\text{Cumulative number of failures} = \sum_{n}^{n} \delta i)\) \\
+
+        \(\text{Number of censored observations} = \sum_{n}^{ti}(1 - \delta i)\) \\
+        
+        \(R^(t) = exp(-\frac{\sum_{n}^{ti} \delta i}{n})\) \\
+        
+        where $n$ is the total number of servers.
+    \begin{flushleft}
+            \item Using the following code in python to apply the non-parametric bootstrap to the data:
+
+            \lstset{
+              basicstyle=\ttfamily,
+              numbers=left,
+              numberstyle=\tiny\color{gray},
+              breaklines=true,
+              keywordstyle=\color{blue},
+              commentstyle=\color{green!40!black},
+              stringstyle=\color{orange},
+              frame=single,
+              language=Python
+            }
+        
+            \begin{lstlisting}
+            # import numpy as np
+            
+            # # Given data
+            # failure_times = np.array([
+            #     1088.55, 1808.22, 2295.93, 2677.00, 3715.81, 4262.82,
+            #     1421.70, 1808.77, 2368.95, 2734.39, 3716.82, 4362.63,
+            #     1501.50, 1835.81, 2438.96, 2795.40, 3770.61, 4500.37,
+            #     1534.56, 1859.16, 2509.08, 2968.35, 3808.22, 4658.01,
+            #     1611.89, 1889.69, 2592.39, 3106.45, 3823.24, 4775.04,
+            #     1629.61, 2044.81, 2601.27, 3282.68, 3844.85, 4798.53,
+            #     1665.32, 2065.61, 2629.69, 3601.69, 3943.01, 4958.32,
+            #     1740.20, 2179.10, 2635.79, 3623.20, 3988.39, 5260.35,
+            #     1799.39, 2249.68, 2660.02, 3627.13, 4118.64, 5508.57,
+            #     1800.82, 2261.86, 2674.43, 3631.10, 4216.89, 6968.88
+            # ])
+            
+            # # Number of bootstrap samples
+            # num_samples = 1000
+            
+            # # Initialize an array to store bootstrap MTTF values
+            # bootstrap_mttf = np.zeros(num_samples)
+            
+            # # Bootstrap resampling and MTTF calculation
+            # for i in range(num_samples):
+            #     bootstrap_sample = np.random.choice(failure_times, size=len(failure_times), replace=True)
+            #     bootstrap_mttf[i] = np.mean(bootstrap_sample)
+            
+            # # Calculate the confidence interval
+            # confidence_interval = np.percentile(bootstrap_mttf, [2.5, 97.5])
+            
+            # print("Bootstrap Mean Time To Failure (MTTF):", np.mean(bootstrap_mttf))
+            # print("Bootstrap 95% Confidence Interval:", confidence_interval)
+            
+            import numpy as np
+            
+            # Given data
+            t_values = np.array([
+                19.11, 1544.00, 54.31, 4196.34, 217.43,
+                25.62, 1558.04, 1503.73, 4278.78, 4061.36,
+                269.48, 1947.92, 444.19, 4623.43, 562.08,
+                431.81, 2115.51, 1671.32, 4668.51, 4106.43,
+                520.48, 2307.92, 636.60, 4862.93, 756.50,
+                533.40, 2347.95, 1711.35, 5120.96, 4364.45,
+                684.16, 2413.24, 701.89, 5400.25, 1035.79,
+                709.78, 2509.03, 1807.15, 5693.01, 4657.22,
+                830.20, 2782.08, 974.93, 6120.47, 1463.25,
+                861.62, 3088.73, 2113.80, 6656.40, 5193.15,
+                897.72, 3153.86, 1040.06, 8042.32, 2849.17,
+                915.40, 3156.66, 2116.60, 8893.73, 6044.55,
+                939.79, 3162.79, 1046.19, 9022.43, 2977.88,
+                1037.99, 3276.37, 2230.17, 9216.15, 6238.27,
+                1113.06, 3313.52, 1083.35, 9301.77, 3063.49,
+                1276.45, 3323.28, 2239.93, 9379.77, 6316.28,
+                1283.82, 3492.84, 1252.91, 9681.48, 3365.21,
+                1353.88, 3559.71, 2306.80, 10351.36, 6986.15,
+                1425.11, 3966.95, 1660.15, 10993.42, 4007.27,
+                1489.69, 3978.91, 2318.77, 13496.11, 9488.83
+            ])
+            
+            delta_values = np.array([
+                0, 1, 0, 1, 0,
+                1, 1, 1, 1, 1,
+                1, 0, 1, 1, 1,
+                1, 0, 1, 0, 1,
+                0, 1, 0, 1, 0,
+                1, 0, 1, 0, 1,
+                1, 0, 1, 0, 1,
+                0, 1, 0, 1, 0,
+                1, 0, 1, 1, 1,
+                0, 1, 1, 1, 1,
+                1, 1, 0, 1, 1,
+                1, 0, 1, 1, 1,
+                0, 0, 1, 0, 1,
+                0, 1, 1, 1, 0,
+                0, 1, 0, 1, 0,
+                1, 0, 1, 1, 0
+            ])
+            
+            # Identify events up to t = 8500 hours
+            events_8500 = t_values[t_values <= 8500]
+            delta_8500 = delta_values[:len(events_8500)]
+            
+            # Calculate cumulative sums
+            cumulative_failures = np.sum(delta_8500)
+            cumulative_censored = np.sum(1 - delta_8500)
+            
+            # Estimate R(t) at t = 8500 hours
+            n_servers = 60
+            R_8500 = np.exp(-cumulative_failures / n_servers)
+            
+            print(f"Estimated R(8500h): {R_8500:.4f}")
+            \end{lstlisting}
+        Which gives us the result of:
+        
+        \fbox{$\hat{R}(8500h): 0.4346$}
+        \end{flushleft}
+        
+\end{enumerate}
+
+\end{enumerate}
+
+%----------------------------------------------------------------------------------------
 %	PROBLEM 5
 %----------------------------------------------------------------------------------------
 \setcounter{Question}{4}
@@ -253,7 +691,7 @@
           The Kolmogorov Smirnov can be used to check if the distribution fits:
           \begin{figure}[H]
               \centering
-              \includegraphics[width=1\linewidth]{ks_q8.png}
+              \includegraphics[width=0.7\linewidth]{ks_q8.png}
               \caption{Kolmogorov Smirnov Method}
               \label{fig:graphical2_q8}
           \end{figure}
@@ -263,7 +701,7 @@
 
           \begin{figure}[H]
               \centering
-              \includegraphics[width=1\linewidth]{easyfit_q8.png}
+              \includegraphics[width=0.7\linewidth]{easyfit_q8.png}
               \caption{Easy Fit}
               \label{fig:easyfit_q8}
           \end{figure}
