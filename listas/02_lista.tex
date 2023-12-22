@@ -527,6 +527,21 @@ table shows the event times (Columns $ti$) - failure or censoring. Columns $\del
 
     \item As $t=8500$ is actually one of our data points, we can use the value we estimated for $t=8500$ directly for our reliability estimate, thus, \fbox{$\hat{R}(8500) \approx 0.822$}. Alternatively, we can run a regression on our data points, and estimate the reliability at that point using that regression. In case of a linear regression, we get $\hat{R}(8500) \approx 0.861$.
 \end{enumerate}
+\newpage
+
+%----------------------------------------------------------------------------------------
+%	PROBLEM 6
+%----------------------------------------------------------------------------------------
+\setcounter{Question}{5}
+\begin{question}
+    Describe and explain the main steps required for a parametric reliability data analysis
+\end{question}
+Para realizarmos uma análise paramétrica de dados para a confiabilidade de um componente ou sistema, devemos seguir alguns métodos estatísticos. A priori, realizamos uma análise exploratória dos dados, visando encontrar a distribuição de probabilidade que melhor esteja ajustada aos dados.\par
+
+Durante o processo de EDA, utilizamos de diversas estatísticas para identificar quais distribuições não são adequadas aos dados. Checamos os dados estatísticos de centralidade, variabilidade, skewness, os percentis e quartis, momentos, taxa de falha, assim como também é possível usar de técnicas gráficas como histogramas, box plots, distribuição empírica,etc.\par
+
+Encontrar os valores ideais para os parâmetros da distribuição, também é uma tarefa primordial, e temos três principais estratégias para isso. Sendo elas: métodos gráficos, métodos baseados em momento e a estimação de máxima verossimilhança.
+	Por fim, utilizamos o teste de aderência como garantia de uma boa adaptação aos dados por parte da distribuição.
 
 %----------------------------------------------------------------------------------------
 %	PROBLEM 7
@@ -920,5 +935,80 @@ As we have ungrouped and complete reliability data, we can use a simple method t
         \item Assuming a confidence level of 95\%, upon calculating the confidence interval using non-parametric bootstrap, we get \fbox{MTTF $\in (1599.03h,~ 2609.37h)$}
         \item The results compared to the ones found in Exercise 8 are very close, which demonstrates that the semi-parametric approach chosen in the previous exercise seems to accurately represent the original dataset.
     \end{enumerate}
+
+%----------------------------------------------------------------------------------------
+%	PROBLEM 10
+%----------------------------------------------------------------------------------------
+
+\setcounter{Question}{9}
+\begin{question}
+    Considering the servers' time to failure depicted in Table 4, and assuming the time to repair each server was recorded in Table 5:
+\begin{enumerate}[label=(\alph*)]
+    \item Conduct an exploratory analysis and check the suitability of an exponential distribution and provide the respective arguments to reject or not reject it. If the exponential distribution is rejected, check the Erlang distribution.
+    \item Obtain a point estimate of distribution parameters.
+    \item Conduct goodness of fitting.
+    \item Obtain a point estimate of the MTTR.
+    \item Estimate the MTTR confidence interval, adopting 5\% of significance.
+    \item Obtain a point estimate of the availability, and
+    \item Estimate the availability confidence interval with 95\% of confidence using a semi-parametric bootstrap.
+\end{enumerate}
+\end{question}
+
+\begin{enumerate}[label=(\alph*)]
+    \item Após a análise exploratória, temos que a distribuição exponencial é adequada para a massa de dados.
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.5\textwidth]{histograma.png} 
+        \label{fig:q10example}
+    \end{figure}
+
+    Durante o teste KS, temos o valor do teste estatístico sendo menor que o valor crítico, assim não rejeitamos a hipótese nula, garantindo o uso correto da distribuição exponencial
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.5\textwidth]{ks_10.png} 
+        \label{fig:q101example}
+    \end{figure}
+
+    \item A distribuição exponencial tem somente um único parâmetro, o $\lambda$
+
+\begin{align*}
+    \lambda &= \frac{1}{\mu} \\
+    \mu &= 2089.64 \\
+    \lambda &= \frac{1}{2089.64} = 0.00048
+\end{align*}
+
+\item Ainda na letra A, foi realizado um teste ks para a checagem da adaptação da distribuição aos dados, onde obtivemos o resultado:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{ks_10.png} 
+    \label{fig:example}
+\end{figure}
+
+\item Como na tabela temos os valores do time to repair para cada instância de falha, podemos obter o resultado a partir da média dos tempos de reparo.
+
+\begin{align*}
+    \text{MTTR} &= \frac{\text{Sum of TTR}}{\text{Number of Failures}}\\
+    \text{MTTR} &= \frac{50.9}{60} =  0.85 
+\end{align*}
+
+\item Para calcular o intervalo de confiança do MTTR, podemos utilizar a formula para o MTTF, trocando o T de time to failure para time to repair. Assim:
+\begin{gather*}
+    MTTR \in(\frac{2\times n \overline{T}}{\chi^2_{2n, 1-(\alpha/2)}}, \frac{2\times n \overline{T}}{\chi^2_{2n, \alpha/2}}) \\
+    MTTR \in ( \frac{108}{152.21},\frac{108}{91.57}) \\
+    MTTR \in (0.71h,1.18h)
+\end{gather*}
+
+\item Temos:
+\[\text{Â} = \frac{1}{1 + \hat{p}}\]
+Onde
+\[\hat{p} = \frac{\hat{\lambda}}{\mu}\]
+Sendo:
+\[\hat{p} = \frac{0.00048}{2089} = 2,2 \times 10^-7\]
+Encontramos:
+\[\text{Â} = \frac{1}{1+ 2,2 \times 10^-7} = 99.99\%\]
+\end{enumerate}
     
 \end{document}
