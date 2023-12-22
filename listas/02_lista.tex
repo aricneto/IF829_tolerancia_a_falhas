@@ -45,7 +45,7 @@
 %----------------------------------------------------------------------------------------
 %	PROBLEM 5
 %----------------------------------------------------------------------------------------
-\setcounter{Question}{5}
+\setcounter{Question}{4}
 \begin{question}
     Table 3 summarizes the reliability data test of eighty servers $(n = 80)$ during $13500h$. Inspections were carried out every week $(500h)$. The whole observation was finished at $13500h$. Table 3 shows the time instants that represent the end of each of the twenty-seven intervals $(Column \ t_i)$, the number of failed servers in the respective interval $(Column \ r_i)$, and the number of censored computer in the interval $(Column \ c_i)$. Adopted a nonparametric method to draw the graphs
     \begin{enumerate}[label=(\alph*)]
@@ -90,4 +90,119 @@
     \item As $t=8500$ is actually one of our data points, we can use the value we estimated for $t=8500$ directly for our reliability estimate, thus, \fbox{$\hat{R}(8500) \approx 0.822$}. Alternatively, we can run a regression on our data points, and estimate the reliability at that point using that regression. In case of a linear regression, we get $\hat{R}(8500) \approx 0.861$.
 \end{enumerate}
 
+%----------------------------------------------------------------------------------------
+%	PROBLEM 9
+%----------------------------------------------------------------------------------------
+\setcounter{Question}{8}
+\begin{question}
+    Consider the reliability experiment in which sixty servers \((n = 60)\) were observed in an accelerated reliability test. The times each server failed were recorded in Table 4 (complete data). Using a non-parametric method, calculate
+    \begin{enumerate}[label=(\alph*)]
+        \item \(\hat{R}(t) \text{ at } t = 1000h\)
+        \item \(\hat{F}(t) \text{ at } t = 1000h\)
+        \item \(\hat{f}(t) \text{ at } t = 1000h\)
+        \item \(\hat{\lambda}(t) \text{ at } t = 1000h\)
+    \end{enumerate}
+    Draw:
+    \begin{enumerate}[label=(\alph*), start=5]
+        \item \(\hat{R}(t_i) \times t_i\)
+        \item \(\hat{f}(t_i) \times t_i\)
+        \item \(\hat{\lambda}(t) \times t\)
+    \end{enumerate}
+    And:
+    \begin{enumerate}[label=(\alph*), start=8]
+        \item \(\widehat{MTTF}\)
+        \item Estimate the confidence interval using nonparametric bootstrap.
+        \item Compare the results with Exercise 8 and comment.
+    \end{enumerate}
+\end{question}
+
+As we have ungrouped and complete reliability data, we can use a simple method to estimate each function. All the data was gathered in an Excel sheet, and the following equations were used for non-parametrically estimating the desired functions:
+    \begin{align*}
+        \hat{R}(t_i) &= \frac{n+1-i}{n+1}    &   \hat{F}(t_i) &= \frac{i}{n+1} \\
+        \hat{f}(t_i) &= \frac{1}{(n+1)(t_i - t_{i - 1})}   &   \hat{\lambda}(t_i) &= \frac{1}{(n+1-i)(t_i - t_{i-1})}
+    \end{align*}
+    Where $(n - i)$ is the number of surviving servers at time $t_i$. Some of the calculated results can be seen in the following table:
+
+    \begin{table}[H]
+        \centering
+        \caption{Estimated functions}
+        \label{tab:my-table}
+        \begin{tabular}{|c|c|cccc|}
+            \hline
+            $i$ & $t_i$ & $R(t_i)$ & $F(t_i)$ & $f(t_i)$ & $l(t_i)$ \\
+            \hline
+            1  & 86.76  & 0.9836 & 0.0164 & 0.0000 & 0.0000 \\
+            2  & 157.32 & 0.9672 & 0.0328 & 0.0002 & 0.0002 \\
+            3  & 190.62 & 0.9508 & 0.0492 & 0.0005 & 0.0005 \\
+            4  & 197.89 & 0.9344 & 0.0656 & 0.0023 & 0.0024 \\
+            5  & 211.91 & 0.9180 & 0.0820 & 0.0012 & 0.0013 \\
+            $\cdots$ & $\cdots$ & $\cdots$ & $\cdots$ & $\cdots$ & $\cdots$ \\
+            20 & 728.45 & 0.6721 & 0.3279 & 0.0010 & 0.0015 \\
+            21 & 736.36 & 0.6557 & 0.3443 & 0.0021 & 0.0032 \\
+            22 & 740.13 & 0.6393 & 0.3607 & 0.0043 & 0.0068 \\
+            23 & 765.32 & 0.6230 & 0.3770 & 0.0007 & 0.0010 \\
+            24 & 924.12 & 0.6066 & 0.3934 & 0.0001 & 0.0002 \\
+            25 & 1087.26 & 0.5902 & 0.4098 & 0.0001 & 0.0002 \\
+            26 & 1109.13 & 0.5738 & 0.4262 & 0.0007 & 0.0013 \\
+            27 & 1188.55 & 0.5574 & 0.4426 & 0.0002 & 0.0004 \\
+            28 & 1189.89 & 0.5410 & 0.4590 & 0.0122 & 0.0226 \\
+            $\cdots$ & $\cdots$ & $\cdots$ & $\cdots$ & $\cdots$ & $\cdots$ \\
+            55 & 5400.53 & 0.0984 & 0.9016 & 0.0000 & 0.0002 \\
+            56 & 5613.1 & 0.0820 & 0.9180 & 0.0001 & 0.0009 \\
+            57 & 6023.71 & 0.0656 & 0.9344 & 0.0000 & 0.0006 \\
+            58 & 6591.52 & 0.0492 & 0.9508 & 0.0000 & 0.0006 \\
+            59 & 7201.78 & 0.0328 & 0.9672 & 0.0000 & 0.0008 \\
+            60 & 9044.38 & 0.0164 & 0.9836 & 0.0000 & 0.0005 \\
+            \hline
+        \end{tabular}
+    \end{table}
+
+    With the calculated data, we can then use the following formula to calculate the values for each function at $t = 1000$:
+    \[\hat{R} = (t_j) = a \times t_j + b\]
+    Where $t_i < t_j < t_{i+1}$, such that $t_j$ is the desired $t$, and $t_i, t_{i+1}$ are two recorded failure times, and
+    \[a = \frac{\hat{R}(t_{i+1})- \hat{R}(t_i)}{t_{i+1} - t_i}\]
+    \[b = \hat{R}(t_i) - a \times t_i\]
+
+    \begin{enumerate}[label=(\alph*)]
+        \item We choose $i = 24$ for our estimation, as $924.12 < 1000 < 1087.26$. Therefore, we have:
+        \begin{gather*}
+            a = \frac{0.5902 - 0.6066}{1087.26 - 924.12} = \num{-1,0052e-4} \\
+            b = 0.6066 - (\num{-1,0052e-4} \times 924.12) = 0,6994 \\
+            \hat{R}(1000) = (\num{-1,0052e-4} \times 1000) + 0,6994 \\
+            \fbox{$\hat{R}(1000) = 0,5988$}
+        \end{gather*}
+        \item Using a similar approach, we can calculate the rest of the functions at $t = 1000$
+        \[\fbox{$\hat{F}(1000) = 0.4010$}\]
+        \item \[\fbox{$\hat{f}(1000) = 0.0001$}\]
+        \item \[\fbox{$\hat{\lambda}(1000) = 0.0001$}\]
+        \item $R(t)$
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=0.8\linewidth]{q9_rt.png}
+            \caption{$\hat{R}(t) \times t$}
+            \label{fig:q9_rt}
+        \end{figure}
+        \item $F(t)$
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=0.8\linewidth]{q9_FFt.png}
+            \caption{$\hat{F}(t) \times t$}
+            \label{fig:q9_Ft}
+        \end{figure}
+        \item $f(t)$
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=0.8\linewidth]{q9_ft.png}
+            \caption{$\hat{F}(t) \times t$}
+            \label{fig:q9_ft}
+        \end{figure}
+        \item $\lambda(t)$
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=0.8\linewidth]{q9Lt.png}
+            \caption{$\hat{F}(t) \times t$}
+            \label{fig:q9_lt}
+        \end{figure}
+    \end{enumerate}
+    
 \end{document}
