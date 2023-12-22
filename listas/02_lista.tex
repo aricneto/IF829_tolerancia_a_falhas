@@ -58,32 +58,44 @@
     \end{question}
 
 \begin{enumerate}[label=(\alph*)]
-    \item \textbf{grouped and ungrouped data set:} 
+    \item \textbf{Grouped and ungrouped data set:} 
     
         Grouped data set is organized into intervals or groups, and you're given the frequency of observations within each group. On ungrouped data set each individual observation is listed separately without grouping into intervals.
            
-    \item \textbf{complete and censored data:}
+    \item \textbf{Complete and censored data:}
     
         Complete data is a dataset where every data point has been observed or measured without any missing values.
         Censored data, is data in which the information about some values is incomplete because the measurements are constrained in some way. This can be left-censored, right-censored, or interval-censored.
         
-    \item \textbf{operational data and test generated data:}
+    \item \textbf{Operational data and test generated data:}
     
         Operational Data, the is data collected during the normal operation of a system or process.
         Test-Generated Data, the data specifically created for testing purposes, often in a controlled environment to assess the performance of a system or model.
-    \item \textbf{left-censoring:}
+    \item \textbf{Left-censoring:}
     
         Occurs when the lower bound of a measurement is known, but values below this bound are not observed or recorded. It's a form of incomplete data where the true values are censored on the left side.
         
-    \item \textbf{light-censoring type 1 and type 2:}
+    \item \textbf{Right-censoring type 1 and type 2:}
     
        In the right-censoring type 1 the values above a certain threshold are not observed. The data is truncated at the right end.
        In the right-censoring type 2 the values above a certain threshold are recorded as being above that threshold, but the exact values are not known. This is common in survival analysis, where the event of interest may not have occurred for some subjects.
         
-    \item \textbf{and multi censored data:}
+    \item \textbf{Multi censored data:}
     
         Refers to a situation where data is censored in multiple ways. For example, you might have both left-censored and right-censored data in a single dataset.
 \end{enumerate}
+
+%----------------------------------------------------------------------------------------
+%	PROBLEM 2
+%----------------------------------------------------------------------------------------
+\begin{question}
+    Describe the main aspects that distinguish non-parametric and parametric reliability data analysis and the respective advantages and disadvantages.
+\end{question}
+
+\textbf{Parametric} approaches to reliability data analysis rely on assumptions about the shape and distribution of the dataset, often trying to find patterns that make it fit a specific, well-studied, distribution, so the data can be better understood and simulated. If a model is well-fitted to a dataset, a major advantage is that predictions made based on such a model will often be very accurate and representative of the dataset as it progresses.\par
+However, this reliance on a given model is also a disadvantage, as selecting an improperly-fitted model for a dataset will negatively impact any predictions based on that model. Also, if a model was well-fitted, but the dataset starts to deviate from the model as new data is gathered, it will also start making inaccurate predictions\par
+\textbf{Non-Parametric} approaches, on the other hand, make no assumptions about a dataset's distribution, concerning itself purely with the data, and what can be extracted from it. Such an approach can be way more reliable when one is unable to fit a dataset to a model, either due to lack of knowledge about its distribution, or due to the particular shape of the dataset being incompatible with most models. Also, as opposed to parametric approaches, it is more resistant to evolutions on the dataset, as the predictions will dynamically change as new data is available.\par
+However, non-parametric approaches are often less informative, and the models are limited to the sample size of the data, making it necessary to have a comparatively large sample size of what you're studying to be able to draw any meaningful conclusions regarding its predictions.
 
 %----------------------------------------------------------------------------------------
 %	PROBLEM 3
