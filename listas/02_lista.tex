@@ -1,0 +1,93 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Lachaise Assignment
+% LaTeX Template
+% Version 1.0 (26/6/2018)
+%
+% This template originates from:
+% http://www.LaTeXTemplates.com
+%
+% Authors:
+% Marion Lachaise & François Févotte
+% Vel (vel@LaTeXTemplates.com)
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass{article}
+% \usepackage[brazil]{babel}
+\usepackage{graphicx}
+\graphicspath{ {./images/} }
+
+\input{structure.tex} % Include the file specifying the document structure and custom commands
+
+%----------------------------------------------------------------------------------------
+%	ASSIGNMENT INFORMATION
+%----------------------------------------------------------------------------------------
+
+\title{Critical Systems Evaluation} % Title of the assignment
+
+\author{First Homework List\\ Equipe: \texttt{aasb2, acn2, pvoa, vbmp}} % Author name and email address
+
+\date{CIn, UFPE --- \today} % University, school and/or department name(s) and a date
+
+%----------------------------------------------------------------------------------------
+
+\begin{document}
+
+\maketitle % Print the title
+
+%----------------------------------------------------------------------------------------
+%	PROBLEM 5
+%----------------------------------------------------------------------------------------
+\setcounter{Question}{5}
+\begin{question}
+    Table 3 summarizes the reliability data test of eighty servers $(n = 80)$ during $13500h$. Inspections were carried out every week $(500h)$. The whole observation was finished at $13500h$. Table 3 shows the time instants that represent the end of each of the twenty-seven intervals $(Column \ t_i)$, the number of failed servers in the respective interval $(Column \ r_i)$, and the number of censored computer in the interval $(Column \ c_i)$. Adopted a nonparametric method to draw the graphs
+    \begin{enumerate}[label=(\alph*)]
+        \item $\hat{R}(t) \times t$
+        \item $\hat{F}(t) \times t$
+        \item Estimate $\hat{R}(8500h)$
+    \end{enumerate}
+\end{question}
+
+\begin{enumerate}[label=(\alph*)]
+    \item We'll use the non-parametric Kaplan-Meier estimator to calculate the desired functions. This method is appropriate for this dataset since it can correctly account for right-censored data. For the survival function $R(t)$, we have
+    \[\hat{R}(t) = \prod_{i: t_i<t} \left(1- \frac{d_i}{n_i}\right)\]
+    Where $d_i$ is the number of failures at time $t_i$, and $n_i$ is the survivors up to time $t_i$. That is, the total number of servers minus the sum of all failures and censored data before $t_i$.
+    We used the provided Life Time Data Analysis spreadsheet to compute the results for the Kaplan-Meier estimator.
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.5\linewidth]{q3_sheet.png}
+        \caption{Kaplan-Meier spreadsheet results}
+        \label{fig:q3_km1}
+    \end{figure}
+
+    With the resulting values, we can plot the curve for the $\hat{R}(t)$ and $\hat{F}(t)$ functions
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.8\linewidth]{q3_rt.png}
+        \caption{$\hat{R}(t) \times t$}
+        \label{fig:q3_km_rt}
+    \end{figure}
+
+    We can see that the reliability is fairly stable, being above 0.65 after 13500h
+    \item We know that $\hat{F}(t) = 1 - \hat{R}(t)$, so we can take the complement of the values from $\hat{R}(t)$ to plot $\hat{F}(t)$
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.8\linewidth]{q3_ft.png}
+        \caption{$\hat{F}(t) \times t$}
+        \label{fig:q3_km_ft}
+    \end{figure}
+
+    \item As $t=8500$ is actually one of our data points, we can use the value we estimated for $t=8500$ directly for our reliability estimate, thus, \fbox{$\hat{R}(8500) \approx 0.822$}. Alternatively, we can run a regression on our data points, and estimate the reliability at that point using that regression. In case of a linear regression, we get $\hat{R}(8500) \approx 0.861$.
+\end{enumerate}
+
+\end{document}

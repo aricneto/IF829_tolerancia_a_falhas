@@ -21,7 +21,7 @@
 
 \usepackage{amsmath,amsfonts,stmaryrd,amssymb} % Math packages
 
-\usepackage{enumerate} % Custom item numbers for enumerations
+\usepackage{enumitem} % Custom item numbers for enumerations
 
 \usepackage[ruled]{algorithm2e} % Algorithms
 
@@ -41,8 +41,13 @@
 \usepackage{float}
 
 \usepackage{empheq} 
+\usepackage{physics} 
 \usepackage{xcolor}
 \definecolor{lightgreen}{HTML}{90EE90}
+
+\usepgfplotslibrary{fillbetween}
+% \usepgfplotslibrary{external}
+% \tikzexternalize
 
 %----------------------------------------------------------------------------------------
 %	DOCUMENT MARGINS
@@ -69,7 +74,7 @@
 \usepackage[utf8]{inputenc} % Required for inputting international characters
 \usepackage[T1]{fontenc} % Output font encoding for international characters
 
-\usepackage{XCharter} % Use the XCharter fonts
+% \usepackage{XCharter} % Use the XCharter fonts
 
 %----------------------------------------------------------------------------------------
 %	COMMAND LINE ENVIRONMENT
@@ -241,3 +246,9 @@
 %----------------------------------------------------------------------------------------
 %	EQUATION BOXES
 %----------------------------------------------------------------------------------------
+
+%----------------------------------------------------------------------------------------
+%	CUSTOM SUBSECTIONS
+%----------------------------------------------------------------------------------------
+\renewcommand{\thesubsection}{\thesection.\alph{subsection}}
+
